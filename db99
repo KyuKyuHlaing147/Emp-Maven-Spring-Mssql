@@ -1,0 +1,17 @@
+ALTER TABLE Emp99
+ADD id INT IDENTITY(1,1) PRIMARY KEY;
+
+drop table Emp99;
+
+CREATE TABLE Emp99 (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL,
+    salary DECIMAL(10, 2) NOT NULL, 
+    designation NVARCHAR(50) NOT NULL
+
+);
+
+INSERT INTO Emp99 (name, salary, designation) 
+VALUES ('John Doe', 50000, 'Software Engineer');
+
+

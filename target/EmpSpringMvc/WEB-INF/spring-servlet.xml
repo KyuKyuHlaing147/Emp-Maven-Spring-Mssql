@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+   			http://www.springframework.org/schema/beans     
+   			http://www.springframework.org/schema/beans/spring-beans.xsd
+   			http://www.springframework.org/schema/context 
+   			http://www.springframework.org/schema/context/spring-context.xsd 
+   			http://www.springframework.org/schema/mvc
+   			classpath:/xsd/spring-mvc.xsd">
+      
+<context:component-scan base-package="com.example.controller"></context:component-scan>    
+    
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">    
+<property name="prefix" value="/WEB-INF/views/"></property>    
+<property name="suffix" value=".jsp"></property>    
+</bean>     
+
+<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"></property>
+    <property name="url" value="jdbc:sqlserver://localhost:1433;databaseName=mydb"></property>
+    <property name="username" value="sa"></property>
+    <property name="password" value="root"></property>
+</bean>
+    
+<bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">    
+<property name="dataSource" ref="ds"></property>    
+</bean>    
+    
+<bean id="dao" class="com.example.dao.EmpDao">    
+<property name="template" ref="jt"></property>    
+</bean>       
+</beans>  
